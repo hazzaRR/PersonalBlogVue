@@ -1,0 +1,32 @@
+<script setup>
+import Navbar from './components/Navbar.vue';
+import SignedInNavBar from './components/SignedInNavBar.vue';
+import {ref} from 'vue';
+
+
+const isLoggedIn = ref(true);
+
+const links = [
+{name: "Home", link: "/"},
+{name: "Manage Posts", link: "/dashboard/manage-posts"},
+{name: "Add Post", link: "/dashboard/add-post"},
+{name: "Posts", link: "/posts"}
+]
+
+const tools = [
+{name: "Manage Posts", link: "/dashboard/manage-posts"},
+{name: "Add Post", link: "/dashboard/add-post"},
+{name: "Settings", link: "/settings"}
+]
+
+</script>
+
+<template>
+  <SignedInNavBar v-if="isLoggedIn" :tools="tools" />
+  <Navbar v-else :links="links" />
+<router-view/>
+</template>
+
+<style scoped>
+
+</style>
