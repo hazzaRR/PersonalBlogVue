@@ -5,7 +5,7 @@ import Footer from './components/Footer.vue';
 import {ref} from 'vue';
 
 
-const isLoggedIn = ref(true);
+const isLoggedIn = ref(false);
 
 const links = [
 {name: "Home", link: "/"},
