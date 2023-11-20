@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
 import SignedInNavBar from './components/SignedInNavBar.vue';
+import Footer from './components/Footer.vue';
 import {ref} from 'vue';
 
 
@@ -24,7 +25,8 @@ const tools = [
 <template>
   <SignedInNavBar v-if="isLoggedIn" :tools="tools" />
   <Navbar v-else :links="links" />
-<router-view/>
+   <router-view/>
+   <Footer />
 </template>
 
 <style scoped>
