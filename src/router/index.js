@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import Posts from '../views/Posts.vue'
+import Post from "../views/Post.vue";
 import ManagePosts from '../views/ManagePosts.vue'
 import AddPost from '../views/AddPost.vue'
 import EditPost from '../views/EditPost.vue'
@@ -18,6 +19,12 @@ const routes = [
     path: '/posts',
     name: 'posts',
     component: Posts
+  },
+  {
+    path: '/post/:id',
+    name: 'post',
+    component: Post,
+    props: true
   },
  {
     path: '/dashboard/add-post',
