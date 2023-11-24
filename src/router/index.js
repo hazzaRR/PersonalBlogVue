@@ -1,13 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '../views/HomePage.vue'
-import Posts from '../views/Posts.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomePage from '../views/HomePage.vue';
+import Posts from '../views/Posts.vue';
 import Post from "../views/Post.vue";
-import ManagePosts from '../views/ManagePosts.vue'
-import AddPost from '../views/AddPost.vue'
-import EditPost from '../views/EditPost.vue'
-import Settings from '../views/Settings.vue'
-// import AboutView from '../views/AboutView.vue'
-//import ProductView from '../views/ProductView.vue'
+import ManagePosts from '../views/dashboard/ManagePosts.vue';
+import AddPost from '../views/dashboard/AddPost.vue';
+import EditPost from '../views/dashboard/EditPost.vue';
+import Settings from '../views/Settings.vue';
+import Login from '../views/Login.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -46,19 +46,18 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: Settings
+  },
+  {
+    path: '/auth/login',
+    name: 'login',
+    component: Login
+  },
+  { 
+  path: '/:pathMatch(.*)*',
+  name: 'NotFound',
+  component: NotFound
   }
-// { 
-//   path: '/:pathMatch(.*)*',
-//   name: 'NotFound',
-//   component: NotFound
-// }
   
-//  {
-//    path: '/products/:id',
- //   name: 'product',
- //   component: ProductView,
-//    props: true
-//  },
 ]
 
 const router = createRouter({
