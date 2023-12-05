@@ -16,6 +16,13 @@
                 <input v-model="postDetails.title" type="text" id="title" placeholder="A brand new world"
                   class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
               </div>
+              <div class="mt-6">
+                <label for="banner_image" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Banner Image</label>
+              <input @change="handleFileChange($event)" type="file" id="banner_image"
+                                  accept="image/*"
+                                  class="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300" />
+
+              </div>
 
               <div class="mt-6">
                 <div class="flex justify-between mb-2">
@@ -30,7 +37,7 @@
                 </div>
               </div>
 
-              <div class="flex flex-col mt-6">
+              <!-- <div class="flex flex-col mt-6">
                 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
@@ -84,7 +91,7 @@
                   </div>
                 </div>
               </div>
-              <!-- Add button to dynamically add more file input fields -->
+              Add button to dynamically add more file input fields
               <button type="button" @click="addImageInput"
                 class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600 mt-6">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -94,7 +101,7 @@
                 </svg>
 
                 <span>Add another image</span>
-              </button>
+              </button> -->
 
               <div class="form-control">
                 <label class="label cursor-pointer">
@@ -121,9 +128,6 @@
 import { ref } from "vue";
 import { BASE_URL } from "../../config"; //
 
-// const title = ref('');
-// const content = ref('');
-// const imgs = ref([{ file: null, fileName: null }]);
 
 const postDetails = ref({
   title: "",
@@ -134,93 +138,69 @@ const postDetails = ref({
   privatePost: false
 });
 
-const images = ref([{ file: null, fileName: null }])
+const banner_image = ref(null);
 
-const handleFileChange = (event, index) => {
+//table for multiple photos
+
+// const images = ref([{ file: null, fileName: null }])
+
+// const handleFileChange = (event, index) => {
+//   console.log(event);
+//   console.log(index);
+//   const files = event.target.files;
+//   console.log(files);
+//   images.value[index].file = files[0];
+// };
+
+// const addImageInput = () => {
+//   images.value.push({ file: null, fileName: null });
+// };
+
+// const removeImage = (index) => {
+//   images.value.splice(index, 1);
+// };
+
+const handleFileChange = (event) => {
   console.log(event);
-  console.log(index);
-  const files = event.target.files;
-  console.log(files);
-  images.value[index].file = files[0];
-};
-
-const addImageInput = () => {
-  images.value.push({ file: null, fileName: null });
-};
-
-const removeImage = (index) => {
-  images.value.splice(index, 1);
+  const file = event.target.files;
+  banner_image.value = file[0];
 };
 
 const submitForm = async () => {
-  // Handle form submission, you can send data to your backend or perform other actions
-  // console.log({ title: title.value, content: content.value, images: imgs.value.map(img => img.file) });
-
-  console.log(postDetails.value.images);
-
-  // const formData = new FormData();
-
-      // Append JSON data
-      // formData.append('postDetails', new Blob([JSON.stringify(postDetails.value)], { type: 'application/json' }));
-            // Append JSON data
-  //           formData.append('postDetails', JSON.stringify(postDetails.value));
-
-  //     // Append each image file and its name
-  //     images.value.forEach((image, index) => {
-  //       if (image.file) {
-  //         formData.append(`images[${index}].file`, image.file);
-  //         formData.append(`images[${index}].fileName`, image.fileName);
-  //       }
-  //     });
-
-
-  // try {
-  //   const response = await fetch(`${BASE_URL}/api/posts/`, {
-  //     method: "POST",
-  //     body: formData
-  //   });
-
-  //   const data = await response.json();
-
-  //   if (response.status === 200) {
-  //     console.log("success");
-  //   } else if (response.status === 409) {
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
   // Create a new FormData object
 const formData = new FormData();
 
+//for multiple images
 // Append each image to the FormData with the key "images"
-images.value.forEach((image, index) => {
-  console.log(image)
-  formData.append('images', image.file);
-});
-
-      // // Append each image file and its name
-      // images.value.forEach((image, index) => {
-      //     formData.append(`images[${index}]`, image.file);
-      //     formData.append(`images[${index}].fileName`, image.fileName);
-      //   }
-      // });
+// images.value.forEach((image, index) => {
+//   console.log(image)
+//   formData.append('images', image.file);
+// });
 
 // Append the JSON object as a blob
 const jsonBlob = new Blob([JSON.stringify(postDetails.value)], { type: 'application/json' });
 formData.append('postDetails', jsonBlob);
 
-// Make a fetch request
-fetch(`${BASE_URL}/api/posts/`, {
-  method: 'POST',
-  body: formData,
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log('Response:', data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+
+console.log(banner_image.value);
+
+
+if (banner_image.value.file !== null) {
+  formData.append('bannerImage', banner_image.value)
+}
+
+
+// // Make a fetch request
+// fetch(`${BASE_URL}/api/posts/`, {
+//   method: 'POST',
+//   body: formData,
+// })
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log('Response:', data);
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
 };
 </script>

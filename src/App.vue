@@ -24,9 +24,9 @@ const tools = [
 
 <template>
   <SignedInNavBar v-if="isLoggedIn" :tools="tools" />
-  <Navbar v-else :links="links" />
-   <router-view/>
-   <Footer />
+  <Navbar v-else :links="links" class="sticky top-0 z-50" />
+   <router-view class="grow"/>
+   <Footer class="sticky bottom-0 z-50"/>
 </template>
 
 <style scoped>
