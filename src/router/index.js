@@ -8,54 +8,85 @@ import EditPost from '../views/dashboard/EditPost.vue';
 import Settings from '../views/Settings.vue';
 import Login from '../views/Login.vue';
 import NotFound from '../views/NotFound.vue';
+import { useAuthStore } from '../stores/auth';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomePage
+    component: HomePage,
+    meta: { 
+      requiresAuth: false,
+    }
   },
   {
     path: '/posts',
     name: 'posts',
-    component: Posts
+    component: Posts,
+    meta: { 
+      requiresAuth: false,
+    }
   },
   {
     path: '/post/:id',
     name: 'post',
     component: Post,
-    props: true
+    props: true,
+    meta: { 
+      requiresAuth: false,
+    }
   },
  {
     path: '/dashboard/add-post',
     name: 'addPost',
-    component: AddPost
+    component: AddPost,
+    meta: { 
+      requiresAuth: true,
+      requiredRole: 'ROLE_AUTHOR' 
+    }
   },
  {
     path: '/dashboard/manage-posts',
     name: 'managePosts',
-    component: ManagePosts
+    component: ManagePosts,
+    meta: { 
+      requiresAuth: true,
+      requiredRole: 'ROLE_AUTHOR' 
+    }
   },
   {
     path: '/dashboard/edit-post/:id',
     name: 'editPost',
     component: EditPost,
-    props: true
+    props: true,
+    meta: { 
+      requiresAuth: true,
+      requiredRole: 'ROLE_AUTHOR' 
+    }
   },
   {
     path: '/settings',
     name: 'settings',
-    component: Settings
+    component: Settings,
+    meta: { 
+      requiresAuth: true,
+    }
   },
   {
     path: '/auth/login',
     name: 'login',
-    component: Login
+    component: Login,
+    meta: { 
+      requiresAuth: false,
+    }
   },
   { 
   path: '/:pathMatch(.*)*',
   name: 'NotFound',
-  component: NotFound
+  component: NotFound,
+  meta: { 
+      requiresAuth: false,
+    }
   }
   
 ]
@@ -63,6 +94,23 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach(async (to) => {
+  // const publicPages = ['/auth/login', '/posts', '/post/', '/', /^\/post\/.*/]
+  // const authRequired = !publicPages.includes(to.path);
+  const auth = useAuthStore();
+
+    if (to.meta.requiresAuth) {
+    if (!auth.username) {
+      return '/auth/login'
+    }
+
+    if (to.meta.requiredRole && to.meta.requiredRole !== auth.roles) {
+      return '/auth/login'
+    }
+  }
+
 })
 
 export default router

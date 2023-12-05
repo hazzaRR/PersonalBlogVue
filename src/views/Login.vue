@@ -48,6 +48,7 @@
 
 import { ref } from "vue";
 import { BASE_URL } from "../config"; //
+import {useAuthStore} from '../stores/auth';
 
 
 
@@ -62,42 +63,7 @@ const login = async () => {
 
     console.log(loginDetails.value)
 
-    console.log(BASE_URL)
-
-
-    const response = await fetch(`${BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-                'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginDetails.value)
-    });
-
-    const data = await response.json();
-
-    console.log(data)
-
-        if (response.status === 200) {
-
-            alert("successful login");
-
-            console.log(data)
-
-
-        // if (data.user_type === 'admin') {
-        //     navigateTo('/admin');
-        // }
-        // else if (data.user_type === 'employee') {
-        //     navigateTo('/employee');
-        // }
-        // else {
-        //     navigateTo('/dashboard');
-        // }
-        }
-        else {
-            console.log(data)
-        alert("Incorrect username or password");
-        }
+    useAuthStore().login(loginDetails.value.username, loginDetails.value.password)
 }
   
   
