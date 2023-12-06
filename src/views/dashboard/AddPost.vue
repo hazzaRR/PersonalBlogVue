@@ -37,6 +37,22 @@
                 </div>
               </div>
 
+              <div class="mt-6">
+                <div class="flex justify-between mb-2">
+                  <label for="content" class="text-sm text-gray-600 dark:text-gray-200">Categories</label>
+                </div>
+
+              <div class="form-control grid grid-cols-2">
+                <label v-for="category in categories" :key="category.categoryId" class="label cursor-pointer">
+                  <span class="label-text ml-2">{{ category.categoryName }}</span> 
+                  <input type="checkbox" :value="category" v-model="postDetails.categories" class="checkbox checkbox-sm" />
+                </label>
+              </div>
+
+              <AddCategory @added-category="getCategories" />
+
+              </div>
+
               <!-- <div class="flex flex-col mt-6">
                 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -103,7 +119,7 @@
                 <span>Add another image</span>
               </button> -->
 
-              <div class="form-control">
+              <div class="form-control mt-6">
                 <label class="label cursor-pointer">
                   <span class="label-text">Make post private</span>
                   <input type="checkbox" class="toggle bg-blue-500 to-blue-500" checked v-model="postDetails.privatePost" />
@@ -126,15 +142,28 @@
 
 <script setup>
 import { ref } from "vue";
-import { BASE_URL } from "../../config"; //
+import { BASE_URL } from "../../config";
+import {useAuthStore} from '../../stores/auth';
+import AddCategory from "../../components/AddCategory.vue";
+
+
+const auth = useAuthStore();
+
+
+const categories = ref([
+  {categoryName: "Diabetes", categoryId: 1},
+  {categoryName: "Tech", categoryId: 2},
+  {categoryName: "Travel", categoryId: 3},
+  {categoryName: "Computer Science", categoryId: 4}
+])
+
 
 
 const postDetails = ref({
   title: "",
   content: "",
-  author: "",
+  author: auth.username,
   categories: [],
-  date: new Date().toJSON(),
   privatePost: false
 });
 
@@ -160,6 +189,11 @@ const banner_image = ref(null);
 //   images.value.splice(index, 1);
 // };
 
+
+const getCategories = async () => {
+  console.log("hello")
+}
+
 const handleFileChange = (event) => {
   console.log(event);
   const file = event.target.files;
@@ -182,6 +216,7 @@ const jsonBlob = new Blob([JSON.stringify(postDetails.value)], { type: 'applicat
 formData.append('postDetails', jsonBlob);
 
 
+console.log(postDetails.value);
 console.log(banner_image.value);
 
 
@@ -190,17 +225,23 @@ if (banner_image.value.file !== null) {
 }
 
 
-// // Make a fetch request
-// fetch(`${BASE_URL}/api/posts/`, {
-//   method: 'POST',
-//   body: formData,
-// })
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log('Response:', data);
-//   })
-//   .catch(error => {
-//     console.error('Error:', error);
+// try {
+//   const response = await fetch(`${BASE_URL}/api/posts/`, {
+//     method: 'POST',
+//     body: formData,
 //   });
+//   // const data = await response.json();
+
+
+//   if (response.status === 200) {
+    
+//   }
+
+//   console.log(response.status);
+  
+// } catch (error) {
+//   console.error('Error:', error);
+// }
+
 };
 </script>

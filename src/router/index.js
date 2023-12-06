@@ -97,18 +97,16 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  // const publicPages = ['/auth/login', '/posts', '/post/', '/', /^\/post\/.*/]
-  // const authRequired = !publicPages.includes(to.path);
   const auth = useAuthStore();
 
     if (to.meta.requiresAuth) {
-    if (!auth.username) {
-      return '/auth/login'
-    }
+      if (!auth.username) {
+        return '/auth/login'
+      }
 
-    if (to.meta.requiredRole && to.meta.requiredRole !== auth.roles) {
-      return '/auth/login'
-    }
+      if (to.meta.requiredRole && to.meta.requiredRole !== auth.roles) {
+        return '/auth/login'
+      }
   }
 
 })
