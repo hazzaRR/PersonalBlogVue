@@ -141,7 +141,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { BASE_URL } from "../../config";
 import {useAuthStore} from '../../stores/auth';
 import AddCategory from "../../components/AddCategory.vue";
@@ -150,12 +150,7 @@ import AddCategory from "../../components/AddCategory.vue";
 const auth = useAuthStore();
 
 
-const categories = ref([
-  {categoryName: "Diabetes", categoryId: 1},
-  {categoryName: "Tech", categoryId: 2},
-  {categoryName: "Travel", categoryId: 3},
-  {categoryName: "Computer Science", categoryId: 4}
-])
+const categories = ref(null)
 
 
 
@@ -168,6 +163,11 @@ const postDetails = ref({
 });
 
 const banner_image = ref(null);
+
+
+onMounted(() => {
+  getCategories();
+})
 
 //table for multiple photos
 
@@ -191,7 +191,30 @@ const banner_image = ref(null);
 
 
 const getCategories = async () => {
-  console.log("hello")
+
+  try {
+      const response = await fetch(`${BASE_URL}/api/category/`, {
+        method: "GET",
+        headers: { 
+            "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        
+        const data = await response.json();
+        categories.value = data;
+      }
+
+      else {
+          categories.value = []
+      }
+
+    } catch (error) {
+      // Handle any errors that occur during the request
+      console.error(error);
+    }
+  
 }
 
 const handleFileChange = (event) => {
