@@ -47,4 +47,29 @@ const postDetails = ref(
     postDate: "February 1, 2022"
   });
 
+
+  const fetchPost = async () => {
+    try {
+    const response = await fetch(`${BASE_URL}/api/posts/${props.id}`, {
+      method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    });
+
+    if (response.status === 200) {
+
+      const data = await response.json();
+      categories.value = data;
+    }
+
+    else {
+      categories.value = []
+    }
+
+  } catch (error) {
+
+  }
+}
+
 </script>

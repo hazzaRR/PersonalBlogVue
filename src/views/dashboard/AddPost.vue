@@ -252,7 +252,7 @@ const submitForm = async () => {
   console.log(banner_image.value);
 
 
-  if (banner_image.value.file !== null) {
+  if (banner_image.value !== null) {
     formData.append('bannerImage', banner_image.value)
   }
 
@@ -281,6 +281,8 @@ const submitForm = async () => {
 
 
     }
+
+    
 
     console.log(response.status);
 
