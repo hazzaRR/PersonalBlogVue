@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white dark:bg-gray-900">
-    <div class="flex justify-center h-screen">
+    <div class="flex justify-center">
       <div class="flex items-center w-full max-w-2xl px-6 mx-auto">
         <div class="flex-1">
           <div class="text-center">
@@ -18,9 +18,15 @@
               </div>
               <div class="mt-6">
                 <label for="banner_image" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Banner Image</label>
-              <input @change="handleFileChange($event)" type="file" id="banner_image"
-                                  accept="image/*"
-                                  class="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300" />
+                <input @change="handleFileChange($event)" type="file" id="banner_image" accept="image/*"
+                  class="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300" />
+
+
+                <label for="banner_image_alt" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Alt Text</label>
+                <input v-model="postDetails.altText" type="text" id="banner_image_alt"
+                  placeholder="Alt text for the banner image"
+                  class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+
 
               </div>
 
@@ -42,14 +48,15 @@
                   <label for="content" class="text-sm text-gray-600 dark:text-gray-200">Categories</label>
                 </div>
 
-              <div class="form-control grid grid-cols-2">
-                <label v-for="category in categories" :key="category.categoryId" class="label cursor-pointer">
-                  <span class="label-text ml-2">{{ category.categoryName }}</span> 
-                  <input type="checkbox" :value="category" v-model="postDetails.categories" class="checkbox checkbox-sm" />
-                </label>
-              </div>
+                <div class="form-control grid grid-cols-2">
+                  <label v-for="category in categories" :key="category.categoryId" class="label cursor-pointer">
+                    <span class="label-text ml-2">{{ category.categoryName }}</span>
+                    <input type="checkbox" :value="category" v-model="postDetails.categories"
+                      class="checkbox checkbox-sm" />
+                  </label>
+                </div>
 
-              <AddCategory @added-category="getCategories" />
+                <AddCategory @added-category="getCategories" />
 
               </div>
 
@@ -122,7 +129,8 @@
               <div class="form-control mt-6">
                 <label class="label cursor-pointer">
                   <span class="label-text">Make post private</span>
-                  <input type="checkbox" class="toggle bg-blue-500 to-blue-500" checked v-model="postDetails.privatePost" />
+                  <input type="checkbox" class="toggle bg-blue-500 to-blue-500" checked
+                    v-model="postDetails.privatePost" />
                 </label>
               </div>
 
@@ -143,7 +151,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { BASE_URL } from "../../config";
-import {useAuthStore} from '../../stores/auth';
+import { useAuthStore } from '../../stores/auth';
 import AddCategory from "../../components/AddCategory.vue";
 
 
@@ -157,9 +165,10 @@ const categories = ref(null)
 const postDetails = ref({
   title: "",
   content: "",
-  author: auth.username,
+  author: "admin",
   categories: [],
-  privatePost: false
+  privatePost: false,
+  altText: ""
 });
 
 const banner_image = ref(null);
@@ -193,28 +202,28 @@ onMounted(() => {
 const getCategories = async () => {
 
   try {
-      const response = await fetch(`${BASE_URL}/api/category/`, {
-        method: "GET",
-        headers: { 
-            "Content-Type": "application/json",
-        },
-      });
+    const response = await fetch(`${BASE_URL}/api/category/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-      if (response.status === 200) {
-        
-        const data = await response.json();
-        categories.value = data;
-      }
+    if (response.status === 200) {
 
-      else {
-          categories.value = []
-      }
-
-    } catch (error) {
-      // Handle any errors that occur during the request
-      console.error(error);
+      const data = await response.json();
+      categories.value = data;
     }
-  
+
+    else {
+      categories.value = []
+    }
+
+  } catch (error) {
+    // Handle any errors that occur during the request
+    console.error(error);
+  }
+
 }
 
 const handleFileChange = (event) => {
@@ -225,46 +234,59 @@ const handleFileChange = (event) => {
 
 const submitForm = async () => {
   // Create a new FormData object
-const formData = new FormData();
+  const formData = new FormData();
 
-//for multiple images
-// Append each image to the FormData with the key "images"
-// images.value.forEach((image, index) => {
-//   console.log(image)
-//   formData.append('images', image.file);
-// });
+  //for multiple images
+  // Append each image to the FormData with the key "images"
+  // images.value.forEach((image, index) => {
+  //   console.log(image)
+  //   formData.append('images', image.file);
+  // });
 
-// Append the JSON object as a blob
-const jsonBlob = new Blob([JSON.stringify(postDetails.value)], { type: 'application/json' });
-formData.append('postDetails', jsonBlob);
-
-
-console.log(postDetails.value);
-console.log(banner_image.value);
+  // Append the JSON object as a blob
+  const jsonBlob = new Blob([JSON.stringify(postDetails.value)], { type: 'application/json' });
+  formData.append('postDetails', jsonBlob);
 
 
-if (banner_image.value.file !== null) {
-  formData.append('bannerImage', banner_image.value)
-}
+  console.log(postDetails.value);
+  console.log(banner_image.value);
 
 
-// try {
-//   const response = await fetch(`${BASE_URL}/api/posts/`, {
-//     method: 'POST',
-//     body: formData,
-//   });
-//   // const data = await response.json();
+  if (banner_image.value.file !== null) {
+    formData.append('bannerImage', banner_image.value)
+  }
 
 
-//   if (response.status === 200) {
-    
-//   }
+  try {
+    const response = await fetch(`${BASE_URL}/api/posts/`, {
+      method: 'POST',
+      body: formData,
+    });
+    // const data = await response.json();
 
-//   console.log(response.status);
-  
-// } catch (error) {
-//   console.error('Error:', error);
-// }
+
+    if (response.status === 200) {
+
+      alert("Post successfully added");
+
+      postDetails.value = {
+        title: "",
+        content: "",
+        author: auth.username,
+        categories: [],
+        privatePost: false,
+        altText: ""
+        }
+
+
+
+    }
+
+    console.log(response.status);
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
 
 };
 </script>

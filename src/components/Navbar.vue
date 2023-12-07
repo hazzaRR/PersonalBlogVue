@@ -14,9 +14,12 @@
 <nav x-data="{ isOpen: false }" class="relative bg-white shadow dark:bg-gray-800">
         <div class="container px-6 py-3 mx-auto md:flex">
             <div class="flex items-center justify-between">
-                <a href="#">
-                    <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
-                </a>
+                <router-link to="/">
+                    <!-- <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt=""> -->
+                    <h1 class="w-auto h-6 sm:h-7 text-lg font-bold">
+                        Re(a)dman
+                    </h1>
+                </router-link>
 
                 <!-- Mobile menu button -->
                 <div class="flex lg:hidden">
