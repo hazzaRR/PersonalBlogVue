@@ -23,10 +23,10 @@
 
 
                 <div class="flex items-center mt-6">
-                    <img class="object-cover object-center w-10 h-10 rounded-full" :src="postDetails.authorImg" alt="">
+                    <!-- <img class="object-cover object-center w-10 h-10 rounded-full" :src="postDetails.authorImg" alt=""> -->
 
-                    <div class="mx-4">
-                        <h1 class="text-sm text-gray-700 dark:text-gray-200">{{postDetails.author}}</h1>
+                    <div class="">
+                        <h1 class="text-sm text-gray-700 dark:text-gray-200 my-0">{{postDetails.author}}</h1>
                         <p class="text-sm text-blue-500">Posted on: {{postDetails.postDate}}</p>
                     </div>
                 </div>
@@ -37,12 +37,22 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {ref, onMounted} from 'vue';
+import {getPost} from '../composables/getPost'; 
+import {getImageSrc} from '../composables/ConvertByteArrayToImage'; 
 const props = defineProps(['id'])
 
 import MarkdownIt from "markdown-it";
 
 const markdown = new MarkdownIt();
+
+
+// const postDetails = ref(null);
+
+// onMounted(async () => {
+//   postDetails.value = await getPost();
+//   console.log(latestPosts);
+// });
 
 // const postDetails = ref(
 //   {
@@ -63,7 +73,6 @@ const postDetails = ref(
     imgAlt: "a picture of something",
     postTitle: "What do you want to know about UI",
     postContent: `
-# My Awesome Blog Post
 
 Welcome to my blog! In this post, I'll be sharing some amazing insights and information about [insert topic here]. Whether you're a seasoned professional or a curious beginner, I hope you find this post both informative and enjoyable.
 

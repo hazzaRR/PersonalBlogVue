@@ -5,6 +5,7 @@ import Post from "../views/Post.vue";
 import ManagePosts from '../views/dashboard/ManagePosts.vue';
 import AddPost from '../views/dashboard/AddPost.vue';
 import EditPost from '../views/dashboard/EditPost.vue';
+import RegisterAuthor from '../views/admin/RegisterAuthor.vue';
 import Settings from '../views/Settings.vue';
 import Login from '../views/Login.vue';
 import NotFound from '../views/NotFound.vue';
@@ -78,6 +79,15 @@ const routes = [
     component: Login,
     meta: { 
       requiresAuth: false,
+    }
+  },
+  {
+    path: '/admin/register-author',
+    name: 'RegisterAuthor',
+    component: RegisterAuthor,
+    meta: { 
+      requiresAuth: true,
+      requiredRole: 'ROLE_ADMIN' 
     }
   },
   { 

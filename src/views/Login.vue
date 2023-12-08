@@ -7,7 +7,10 @@
             <div class="flex-1">
                 <div class="text-center">
                     <div class="flex justify-center mx-auto">
-                        <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="">
+                        <!-- <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt=""> -->
+                        <h1 class="w-auto h-7 sm:h-8 text-3xl font-black">
+                        Re(a)dman
+                        </h1>
                     </div>
 
                     <p class="mt-3 text-gray-500 dark:text-gray-300">Sign in to access your account</p>

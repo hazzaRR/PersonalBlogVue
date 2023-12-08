@@ -16,7 +16,7 @@
             <div class="flex items-center justify-between">
                 <router-link to="/">
                     <!-- <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt=""> -->
-                    <h1 class="w-auto h-6 sm:h-7 text-lg font-bold">
+                    <h1 class="w-auto h-6 sm:h-7 text-xl font-black">
                         Re(a)dman
                     </h1>
                 </router-link>
