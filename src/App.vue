@@ -3,6 +3,9 @@ import Navbar from './components/Navbar.vue';
 import SignedInNavBar from './components/SignedInNavBar.vue';
 import Footer from './components/Footer.vue';
 import {ref} from 'vue';
+import {useAuthStore} from './stores/auth';
+
+const auth = useAuthStore();
 
 
 const isLoggedIn = ref(false);
@@ -23,7 +26,7 @@ const tools = [
 </script>
 
 <template>
-  <SignedInNavBar v-if="isLoggedIn" :tools="tools" />
+  <SignedInNavBar v-if="auth.username" :tools="tools" />
   <Navbar v-else :links="links" class="sticky top-0 z-50" />
    <router-view class="grow my-6"/>
    <Footer class="sticky bottom-0 z-50"/>

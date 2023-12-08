@@ -1,3 +1,20 @@
 @tailwind base;
+
+@layer base {
+    h1 {
+      @apply text-2xl font-semibold text-gray-800 dark:text-white;
+    }
+    h2 {
+      @apply text-xl font-semibold text-gray-800 dark:text-white;
+    }
+    h3 {
+      @apply text-lg font-semibold text-gray-800 dark:text-white;
+    }
+    p {
+        @apply text-sm text-gray-500 dark:text-gray-300 md:text-sm
+    }
+}
+
+
 @tailwind components;
 @tailwind utilities;

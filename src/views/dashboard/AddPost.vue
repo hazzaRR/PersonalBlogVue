@@ -4,8 +4,8 @@
       <div class="flex items-center w-full max-w-2xl px-6 mx-auto">
         <div class="flex-1">
           <div class="text-center">
-            <h1 class="text-xl mt-3 text-gray-500 dark:text-gray-300">
-              Create new post
+            <h1 class="text-3xl font-black mt-3 text-gray-500 dark:text-gray-300">
+              Create a new post
             </h1>
           </div>
 

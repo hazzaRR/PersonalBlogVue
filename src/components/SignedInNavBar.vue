@@ -2,7 +2,12 @@
   
   <div class="navbar bg-base-100">
   <div class="flex-1">
-    <router-link to="/" class="btn btn-ghost text-xl">BlogReadman</router-link>
+    <router-link to="/">
+                    <!-- <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt=""> -->
+                    <h1 class="w-auto h-6 sm:h-7 text-lg font-bold">
+                        Re(a)dman
+                    </h1>
+                </router-link>
   </div>
   <div class="flex-none">
     <div class="dropdown dropdown-end">
