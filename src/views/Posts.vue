@@ -19,7 +19,7 @@
             </div> -->
 
             <div v-for="post in posts" :key="post.postId" class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" :src="getImageSrc(post.bannerImage)" :alt="post.altText">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" :src="post.bannerImage ? getImageSrc(post.bannerImage) : defaultImage" :alt="post.altText">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
                     <router-link :to="'/post/'+post.postId" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">{{post.title}}</router-link>
@@ -44,6 +44,7 @@ const loadingPosts = computed(() => {
 })
 
 const posts = ref([]);
+const defaultImage = ref("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
 
 const options = {year: 'numeric', month: 'long', day: 'numeric' };
 

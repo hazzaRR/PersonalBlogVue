@@ -47,6 +47,11 @@ import MarkdownIt from "markdown-it";
 const markdown = new MarkdownIt();
 
 
+onMounted(async () => {
+    postDetails.value = await getPost(props.id);
+});
+
+
 // const postDetails = ref(null);
 
 // onMounted(async () => {
@@ -66,68 +71,44 @@ const markdown = new MarkdownIt();
 //     postDate: "February 1, 2022"
 //   });
 
-const postDetails = ref(
-  {
-    postId: "/1",
-    imgUrl: "https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    imgAlt: "a picture of something",
-    postTitle: "What do you want to know about UI",
-    postContent: `
+// const postDetails = ref(
+//   {
+//     postId: "/1",
+//     imgUrl: "https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+//     imgAlt: "a picture of something",
+//     postTitle: "What do you want to know about UI",
+//     postContent: `
 
-Welcome to my blog! In this post, I'll be sharing some amazing insights and information about [insert topic here]. Whether you're a seasoned professional or a curious beginner, I hope you find this post both informative and enjoyable.
+// Welcome to my blog! In this post, I'll be sharing some amazing insights and information about [insert topic here]. Whether you're a seasoned professional or a curious beginner, I hope you find this post both informative and enjoyable.
 
-## Introduction
+// ## Introduction
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet, libero vel dictum fringilla, tortor velit accumsan lorem, a volutpat risus leo ac tellus.
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet, libero vel dictum fringilla, tortor velit accumsan lorem, a volutpat risus leo ac tellus.
 
-## The Main Points
+// ## The Main Points
 
-### Point 1: Getting Started
+// ### Point 1: Getting Started
 
-Duis vehicula risus vel purus dapibus, ut vulputate mauris finibus. Nullam rhoncus arcu vel tincidunt aliquam.
+// Duis vehicula risus vel purus dapibus, ut vulputate mauris finibus. Nullam rhoncus arcu vel tincidunt aliquam.
 
-### Point 2: Exploring Advanced Concepts
+// ### Point 2: Exploring Advanced Concepts
 
-Fusce id semper turpis. Integer eu neque id tellus fermentum ullamcorper. Proin vel orci a est sollicitudin dapibus.
+// Fusce id semper turpis. Integer eu neque id tellus fermentum ullamcorper. Proin vel orci a est sollicitudin dapibus.
 
-### Point 3: Conclusion
+// ### Point 3: Conclusion
 
-In conclusion, [insert your key takeaways here]. I hope this post has been insightful and valuable to you.
+// In conclusion, [insert your key takeaways here]. I hope this post has been insightful and valuable to you.
 
-## Conclusion
+// ## Conclusion
 
-Thank you for reading my blog post! If you have any questions or comments, feel free to leave them below. Don't forget to subscribe for more exciting content in the future.
+// Thank you for reading my blog post! If you have any questions or comments, feel free to leave them below. Don't forget to subscribe for more exciting content in the future.
 
-Happy blogging!
-`,
-     author: "John Snow",
-    authorImg: "https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-    postDate: "February 1, 2022"
-  });
+// Happy blogging!
+// `,
+//      author: "John Snow",
+//     authorImg: "https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+//     postDate: "February 1, 2022"
+//   });
 
-
-//   const fetchPost = async () => {
-//     try {
-//     const response = await fetch(`${BASE_URL}/api/posts/${props.id}`, {
-//       method: "GET",
-//     //   headers: {
-//     //     "Content-Type": "application/json",
-//     //   },
-//     });
-
-//     if (response.status === 200) {
-
-//       const data = await response.json();
-//       categories.value = data;
-//     }
-
-//     else {
-//       categories.value = []
-//     }
-
-//   } catch (error) {
-
-//   }
-// }
 
 </script>

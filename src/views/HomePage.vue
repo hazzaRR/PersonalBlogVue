@@ -62,7 +62,7 @@
 
             <div v-for="latestPost in latestPosts" :key="latestPost.postId">
               
-              <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" :src="getImageSrc(latestPost.bannerImage)" :alt="latestPost.altText">
+              <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" :src="latestPost.bannerImage ? getImageSrc(latestPost.bannerImage): defaultImage" :alt="latestPost.altText">
 
               <div class="mt-8">
                   <span class="text-sky-500 uppercase tracking-wider">Article</span>
@@ -100,6 +100,7 @@ import {getLatestPosts} from '../composables/getLatestPosts';
 import {getImageSrc} from '../composables/ConvertByteArrayToImage'; 
 
 const latestPosts = ref([]);
+const defaultImage = ref("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
 
 const options = {year: 'numeric', month: 'long', day: 'numeric' };
 
