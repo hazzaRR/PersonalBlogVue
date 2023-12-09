@@ -8,7 +8,7 @@ import EditPost from '../views/dashboard/EditPost.vue';
 import RegisterAuthor from '../views/admin/RegisterAuthor.vue';
 import Settings from '../views/Settings.vue';
 import Login from '../views/Login.vue';
-import NotFound from '../views/NotFound.vue';
+import NotFoundPage from '../views/NotFoundPage.vue';
 import { useAuthStore } from '../stores/auth';
 
 const routes = [
@@ -93,7 +93,7 @@ const routes = [
   { 
   path: '/:pathMatch(.*)*',
   name: 'NotFound',
-  component: NotFound,
+  component: NotFoundPage,
   meta: { 
       requiresAuth: false,
     }
