@@ -8,7 +8,7 @@
                 <h2 class=" text-3xl xl:text-4xl font-bold mt-4 text-gray-800 capitalize">Welcome to my personal blog</h2>
 
                 <p class=" text-gray-500 mt-4 text-lg">Hi, my name is Harry Redman and I am a recent Computer Science graduate from UEA and I have recently returned back from a 3 month travel break in South East Asia.
-                     This is my personal blog where I will write posts about different computer science topics, my experience travelling SEA and also type 1 diabetes.
+                     This is my personal blog where I will write posts about different Computer Science topics, my experience travelling SEA, sports and also type 1 diabetes.
 
                 </p>
             </div>
@@ -72,7 +72,7 @@
                   </h1>
 
                   <p class="mt-2 text-gray-500 dark:text-gray-400">
-                      {{latestPost.content}}
+                      {{`${latestPost.content.substring(0, 250)}...`}}
                   </p>
 
                   <div class="flex items-center justify-between mt-4">

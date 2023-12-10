@@ -1,6 +1,5 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
-import SignedInNavBar from './components/SignedInNavBar.vue';
 import Footer from './components/Footer.vue';
 import {ref, computed} from 'vue';
 import {useAuthStore} from './stores/auth';
@@ -28,8 +27,7 @@ const tools = [
 </script>
 
 <template>
-  <SignedInNavBar v-if="auth.username" :tools="tools" />
-  <Navbar v-else :links="links" class="sticky top-0 z-50" />
+  <Navbar :tools="tools" class="sticky top-0 z-50" />
    <router-view class="grow my-6"/>
    <Footer class="sticky bottom-0 z-50"/>
 </template>
