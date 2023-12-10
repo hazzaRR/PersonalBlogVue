@@ -9,17 +9,18 @@
             <img class="object-cover w-full rounded-xl h-72 lg:h-96" :src="postDetails.bannerImage ? getImageSrc(postDetails.bannerImage): defaultImage" :alt="postDetails.altText">
 
             <div class="mt-6">
-                <p class="text-sm text-blue-500 uppercase">category</p>
+                <p v-if="postDetails.categories.length === 1" class="text-sm text-blue-500 uppercase">category</p>
+                <p v-else class="text-sm text-blue-500 uppercase">categories</p>
+
+                <div class="flex space-x-2 mt-2">
+                    <div class="badge badge-neutral" v-for="category in postDetails.categories" :key="category.categoryId">
+                        {{category.categoryName}}
+                    </div>
+                </div>
 
                 <h1 class="block mt-4 text-2xl font-semibold text-gray-800 dark:text-white">
                     {{postDetails.title}}
                 </h1>
-
-
-                <!-- <p>{{ postDetails.postContent }}</p> -->
-              
-                <!-- Inside the template -->
-                <!-- <p v-for="(paragraph, index) in postDetails.postContent.split('\n')" :key="index" class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm"> {{ paragraph }}</p> -->
 
                 <div v-html="markdown.render(postDetails.content)" />
 
