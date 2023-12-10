@@ -165,7 +165,7 @@ const categories = ref(null)
 const postDetails = ref({
   title: "",
   content: "",
-  author: "admin",
+  author: auth.username,
   categories: [],
   privatePost: false,
   altText: ""

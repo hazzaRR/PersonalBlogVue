@@ -7,8 +7,8 @@
 
                 <h2 class=" text-3xl xl:text-4xl font-bold mt-4 text-gray-800 capitalize">Welcome to my personal blog</h2>
 
-                <p class=" text-gray-500 mt-4 text-lg">Hi, my name is Harry Redman and I am a recent Computer Science graduate from UEA and I have recently returned back from a 3 month travel break in South East Asia.
-                     This is my personal blog where I will write posts about different Computer Science topics, my experience travelling SEA, sports and also type 1 diabetes.
+                <p class=" text-gray-500 mt-4 text-lg">Hi, my name is Harry Redman and I am a recent Computer Science graduate from UEA who has recently returned back from a three-month trip in South East Asia.
+                     This is my personal blog where I will write posts about various Computer Science topics, my SEA travel experience, sports, and type 1 diabetes.
 
                 </p>
             </div>

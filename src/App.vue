@@ -13,8 +13,6 @@ const isLoggedIn = computed(() => {
 
 const links = [
 {name: "Home", link: "/"},
-{name: "Manage Posts", link: "/dashboard/manage-posts"},
-{name: "Add Post", link: "/dashboard/add-post"},
 {name: "Posts", link: "/posts"}
 ]
 
@@ -27,7 +25,7 @@ const tools = [
 </script>
 
 <template>
-  <Navbar :tools="tools" class="sticky top-0 z-50" />
+  <Navbar :tools="tools" :links="links" class="sticky top-0 z-50" />
    <router-view class="grow my-6"/>
    <Footer class="sticky bottom-0 z-50"/>
 </template>

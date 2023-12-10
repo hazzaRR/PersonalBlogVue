@@ -10,6 +10,9 @@
                 </router-link>
   </div>
   <div class="flex-none">
+    <ul class="menu-horizontal px-1">
+    <li class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 mx-2 lg:mx-4 md:my-0" v-for="(link, index) in links" :key="index"><router-link :to="link.link">{{ link.name }}</router-link></li>
+    </ul>
     <div class="dropdown dropdown-end">
       <div v-if="isLoggedIn">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -43,7 +46,6 @@ const isLoggedIn = computed(() => {
 });
 
 const logout = () => {
-  console.log("logout")
   useAuthStore().logout();
 }
 
