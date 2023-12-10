@@ -76,15 +76,17 @@
                   </p>
 
                   <div class="flex items-center justify-between mt-4">
-                      <div>
-                          <router-link to="#" class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
-                              {{latestPost.firstname + " " + latestPost.surname}} 
-                          </router-link>
 
-                          <p class="text-sm text-gray-500 dark:text-gray-400">{{new Date(latestPost.postedOn).toLocaleDateString('en-uk', options)}}</p>
+                    <div class="flex items-center mt-6">
+                    <img class="object-cover object-center w-10 h-10 rounded-full mr-2" :src="latestPost.authorImage ? getImageSrc(latestPost.authorImage): '/src/assets/blank_avatar.jpg'" alt="">
+
+                    <div class="">
+                          <h1 class="text-lg font-medium text-gray-700 dark:text-gray-30 my-0">{{`${latestPost.firstname} ${latestPost.surname}`}}</h1>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">{{new Date(latestPost.postedOn).toLocaleDateString('en-uk', options)}}</p>
                       </div>
+                    </div>
 
-                <router-link :to="'/post/'+latestPost.postId" class="inline-block text-sky-500 underline hover:text-sky-400">Read more</router-link>
+                        <router-link :to="'/post/'+latestPost.postId" class="inline-block text-sky-500 underline hover:text-sky-400">Read more</router-link>
                   </div>
 
               </div>

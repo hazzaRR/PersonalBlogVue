@@ -25,7 +25,7 @@
 
 
                 <div class="flex items-center mt-6">
-                    <!-- <img class="object-cover object-center w-10 h-10 rounded-full" :src="postDetails.authorImg" alt=""> -->
+                    <img class="object-cover object-center w-10 h-10 rounded-full mr-2" :src="postDetails.authorImage ? getImageSrc(postDetails.authorImage): '/src/assets/blank_avatar.jpg'" alt="">
 
                     <div class="">
                         <h1 class="text-sm text-gray-700 dark:text-gray-200 my-0">{{`${postDetails.firstname} ${postDetails.surname}`}}</h1>
