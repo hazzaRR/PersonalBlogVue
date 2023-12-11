@@ -78,18 +78,18 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                <tr v-for="post in posts" :key="post.postId">
+                                <tr v-for="post in displayedPosts" :key="post.postId">
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                         <div>
                                             <h2 class="font-medium text-gray-800 dark:text-white">
-                                                {{ post.postTitle }}
+                                                {{ post.title }}
                                             </h2>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div>
                                             <h4 class="text-gray-700 dark:text-gray-200">
-                                                {{ post.postDate }}
+                                                {{ new Date(post.postedOn).toLocaleDateString('en-uk') }}
                                             </h4>
                                         </div>
                                     </td>
@@ -138,11 +138,14 @@
         <div class="mt-6 sm:flex sm:items-center sm:justify-between">
             <div class="text-sm text-gray-500 dark:text-gray-400">
                 Page
-                <span class="font-medium text-gray-700 dark:text-gray-100">1 of 10</span>
+                <span class="font-medium text-gray-700 dark:text-gray-100">{{ currentPage }} of {{ totalNumberOfPages }}</span>
             </div>
 
             <div class="flex items-center mt-4 gap-x-4 sm:mt-0">
-                <a href="#"
+                <button
+                @click="currentPage--"
+                :disabled="currentPage === 1"
+                :class="{ 'bg-gray-300 text-gray-500 cursor-not-allowed': currentPage === 1 }"
                     class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
@@ -150,9 +153,12 @@
                     </svg>
 
                     <span> previous </span>
-                </a>
+                </button>
 
-                <a href="#"
+                <button
+                    @click="currentPage++"
+                    :disabled="currentPage === totalNumberOfPages"
+                    :class="{ 'bg-gray-300 text-gray-500 cursor-not-allowed': currentPage === totalNumberOfPages }"
                     class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
                     <span> Next </span>
 
@@ -160,20 +166,33 @@
                         stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                     </svg>
-                </a>
+                </button>
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { getPostByAuthor } from "../../composables/getPostsByAuthor";
 
 const authorPosts = ref([]);
+const currentPage = ref(1);
+const postsPerPage = 10;
+
+const totalNumberOfPages = computed(() => {
+    return Math.ceil(authorPosts.value.length / postsPerPage);
+});
+
+const displayedPosts = computed(() => {
+    const start = (currentPage.value - 1) * postsPerPage;
+      const end = start + postsPerPage;
+      return authorPosts.value.slice(start, end);
+});
 
 onMounted(async () => {
     authorPosts.value = await getPostByAuthor();
+    console.log(authorPosts.value)
 });
 
 const posts = ref([

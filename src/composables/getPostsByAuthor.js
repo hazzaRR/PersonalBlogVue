@@ -6,7 +6,7 @@ import { useAuthStore } from '../stores/auth';
 export const getPostByAuthor = async (id) => {
     const auth = useAuthStore();
 
-    const response = await fetch(`${BASE_URL}/api/posts/author-posts/${auth.username}`, {
+    const response = await fetch(`${BASE_URL}/api/posts/user-posts/${auth.username}`, {
         method: "GET",
     });
 
