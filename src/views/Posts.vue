@@ -2,7 +2,7 @@
   
   <SkeletonGrid v-if="loadingPosts" />
   
-  <section v-else class="bg-white dark:bg-gray-900">
+  <section v-else class="bg-white dark:bg-inherit">
     <div class="container px-6 py-10 mx-auto">
         <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">From the blog</h1>
 

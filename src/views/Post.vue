@@ -1,5 +1,5 @@
 <template>
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white dark:bg-inherit">
     <div class="container px-6 py-4 mx-auto">
         <SkeletonParagraph v-if="postDetails === null" />
 

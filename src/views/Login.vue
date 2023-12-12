@@ -1,7 +1,7 @@
 <template>
   
-<div class="bg-white dark:bg-gray-900">
-    <div class="flex justify-center h-screen">
+<div class="bg-white dark:bg-inherit">
+    <div class="flex justify-center">
 
         <div class="flex items-center w-full max-w-md px-6 mx-auto">
             <div class="flex-1">

@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white dark:bg-gray-900 shadow">
+  <footer class="bg-white dark:bg-gray-800 shadow">
     <div class="container flex flex-col items-center justify-between p-6 mx-auto space-y-4 sm:space-y-0 sm:flex-row">
         <router-link to="/">
                     <h1 class="w-auto h-6 sm:h-7 text-xl font-black">

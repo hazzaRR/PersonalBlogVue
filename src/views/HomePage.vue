@@ -1,11 +1,11 @@
 <template>
   
-    <header class=" h-[28rem] bg-gray-50">
+    <header class=" h-[28rem] bg-gray-50 dark:bg-gray-700">
         <div class=" container mx-auto px-4 flex h-full py-6 items-center">
             <div class=" max-w-xl">
                 <p class=" text-sky-500 uppercase tracking-wider">Harry Redman</p>
 
-                <h2 class=" text-3xl xl:text-4xl font-bold mt-4 text-gray-800 capitalize">Welcome to my personal blog</h2>
+                <h2 class=" text-3xl xl:text-4xl font-bold mt-4 text-gray-800 dark:text-white capitalize">Welcome to my personal blog</h2>
 
                 <p class=" text-gray-500 mt-4 text-lg">Hi, my name is Harry Redman and I am a recent Computer Science graduate from UEA who has recently returned back from a three-month trip in South East Asia.
                      This is my personal blog where I will write posts about various Computer Science topics, my SEA travel experience, sports, and type 1 diabetes.
@@ -15,9 +15,9 @@
         </div>
     </header>
     
-    <section class=" container mx-auto px-4 py-16">
+    <section class="container mx-auto px-4 py-16">
         <div class=" flex items-center justify-between">
-            <h2 class=" text-gray-800 font-bold text-3xl">Latest Articles</h2>
+            <h2 class=" text-gray-800 dark:text-white font-bold text-3xl">Latest Articles</h2>
 
             <button class="flex items-center px-4 py-2.5 font-medium tracking-wide text-sky-500 capitalize transition-colors duration-300 transform border border-sky-500 rounded-lg hover:bg-sky-50 focus:outline-none focus:ring focus:ring-sky-300 focus:ring-opacity-80">
                 <router-link to="/posts" class="mx-1">Explore All</router-link>

@@ -1,12 +1,14 @@
 <template>
     <div>
 
-        <section class="bg-white dark:bg-gray-900">
-    <div class="container flex items-center justify-center min-h-screen px-6 mx-auto">
+        <section class="bg-white dark:bg-inherit">
+    <div class="container flex items-center justify-center px-6 mx-auto">
         <form class="w-full max-w-md" @submit.prevent="registerAuthor">
             <div class="flex justify-center mx-auto">
-                <img class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="">
-            </div>
+                        <h1 class="w-auto h-7 sm:h-8 text-3xl font-black">
+                        Re(a)dman
+                        </h1>
+                    </div>
             
             <div>
             <div class="relative flex items-center mt-8">

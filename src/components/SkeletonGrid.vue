@@ -1,5 +1,5 @@
 <template>
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white dark:bg-inherit">
     <div class="container px-6 py-10 mx-auto animate-pulse">
         <h1 class="w-48 h-2 mx-auto bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
 

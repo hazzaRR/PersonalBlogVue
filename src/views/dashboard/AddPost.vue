@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-gray-900">
+  <div class="bg-white dark:bg-inherit">
     <div class="flex justify-center">
       <div class="flex items-center w-full max-w-2xl px-6 mx-auto">
         <div class="flex-1">
@@ -56,7 +56,7 @@
                   </label>
                 </div>
 
-                <AddCategory @added-category="getCategories" />
+                <AddCategory @added-category="getCategories()" />
 
               </div>
 
@@ -153,6 +153,7 @@ import { ref, onMounted } from "vue";
 import { BASE_URL } from "../../config";
 import { useAuthStore } from '../../stores/auth';
 import AddCategory from "../../components/AddCategory.vue";
+import {getCategories} from '../../composables/getCategories'; 
 
 
 const auth = useAuthStore();
@@ -174,8 +175,8 @@ const postDetails = ref({
 const banner_image = ref(null);
 
 
-onMounted(() => {
-  getCategories();
+onMounted(async () => {
+  categories.value = await getCategories();
 })
 
 //table for multiple photos
@@ -198,33 +199,6 @@ onMounted(() => {
 //   images.value.splice(index, 1);
 // };
 
-
-const getCategories = async () => {
-
-  try {
-    const response = await fetch(`${BASE_URL}/api/category/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.status === 200) {
-
-      const data = await response.json();
-      categories.value = data;
-    }
-
-    else {
-      categories.value = []
-    }
-
-  } catch (error) {
-    // Handle any errors that occur during the request
-    console.error(error);
-  }
-
-}
 
 const handleFileChange = (event) => {
   console.log(event);
@@ -282,9 +256,7 @@ const submitForm = async () => {
 
     }
 
-    
-
-    console.log(response.status);
+  
 
   } catch (error) {
     console.error('Error:', error);
