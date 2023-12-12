@@ -1,4 +1,38 @@
 <template>
+
+<dialog id="deletePostModal" class="modal modal-bottom sm:modal-middle">
+  <form method="dialog" class="modal-box">
+          <!-- <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button> -->
+                <div>
+                    <div class="flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                        </svg>
+                    </div>
+                    
+                    <div class="mt-2 text-center">
+                        <h3 class="text-lg font-medium leading-6 text-gray-800 capitalize dark:text-white" id="modal-title">Delete Post</h3>
+                        <h4 class="text-md font-sm leading-6 text-gray-800 capitalize dark:text-white">Title: {{selectedPost.title }}</h4>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            Are you sure you want to delete this post?
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-5 sm:flex sm:items-center sm:justify-center">
+                    <div class="sm:flex sm:items-center ">
+                        <button class="w-full px-4 py-2 mt-2 text-sm font-medium tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:mt-0 sm:w-auto sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">
+                            Cancel
+                        </button>
+                        
+                        <button @click="DeletePost" class="w-full px-4 py-2 mt-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:w-auto sm:mt-0 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+        </form>
+</dialog>
+
     <section class="container px-4 mx-auto">
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div
@@ -81,7 +115,7 @@
                                 <tr v-for="post in displayedPosts" :key="post.postId">
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                         <div>
-                                            <h2 class="font-medium text-gray-800 dark:text-white">
+                                            <h2 class="font-medium text-gray-800 dark:text-white capitalize">
                                                 {{ post.title }}
                                             </h2>
                                         </div>
@@ -118,6 +152,7 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <button
+                                        @click="openDeleteModal(post.postId, post.title)"
                                             class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                                 class="w-6 h-6">
@@ -145,8 +180,8 @@
                 <button
                 @click="currentPage--"
                 :disabled="currentPage === 1"
-                :class="{ 'bg-gray-300 text-gray-500 cursor-not-allowed': currentPage === 1 }"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+                :class="{ 'bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300': currentPage === 1 }">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
@@ -158,8 +193,8 @@
                 <button
                     @click="currentPage++"
                     :disabled="currentPage === totalNumberOfPages"
-                    :class="{ 'bg-gray-300 text-gray-500 cursor-not-allowed': currentPage === totalNumberOfPages }"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+                    :class="{ 'bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300': currentPage === totalNumberOfPages }">
                     <span> Next </span>
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -178,6 +213,7 @@ import { getPostByAuthor } from "../../composables/getPostsByAuthor";
 
 const authorPosts = ref([]);
 const currentPage = ref(1);
+const selectedPost = ref({id: null, title: null});
 const postsPerPage = 10;
 
 const totalNumberOfPages = computed(() => {
@@ -195,27 +231,15 @@ onMounted(async () => {
     console.log(authorPosts.value)
 });
 
-const posts = ref([
-    {
-        postId: "/1",
-        postTitle: "What do you want to know about UI",
-        postPrivate: false,
-        author: "John Snow",
-        postDate: "29/12/2021",
-    },
-    {
-        postId: "/2",
-        postTitle: "All the features you want to know",
-        postPrivate: false,
-        author: "Arthur Melo",
-        postDate: "03/02/2022",
-    },
-    {
-        postId: "/3",
-        postTitle: "Which services you get from Meraki UI",
-        postPrivate: true,
-        author: "Tom Hank",
-        postDate: "22/03/2023",
-    },
-]);
+const openDeleteModal = (id, title) => {
+    selectedPost.value.id = id;
+    selectedPost.value.title = title;
+    deletePostModal.showModal();
+};
+
+const DeletePost = () => {
+    console.log("this runs");
+    console.log(selectedPost.value);
+}
+
 </script>
