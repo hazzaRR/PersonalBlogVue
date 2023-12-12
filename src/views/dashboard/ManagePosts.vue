@@ -210,6 +210,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { getPostByAuthor } from "../../composables/getPostsByAuthor";
+import { deletePost } from "../../composables/DeletePost";
 
 const authorPosts = ref([]);
 const currentPage = ref(1);
@@ -237,9 +238,9 @@ const openDeleteModal = (id, title) => {
     deletePostModal.showModal();
 };
 
-const DeletePost = () => {
-    console.log("this runs");
-    console.log(selectedPost.value);
+const DeletePost = async () => {
+    await deletePost(selectedPost.value.id);
+    authorPosts.value = authorPosts.value.filter(post => post['postId'] !== selectedPost.value.id);
 }
 
 </script>
