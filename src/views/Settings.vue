@@ -1,8 +1,10 @@
 <template>
 
-<section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+  
+  <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
     <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
-
+    
+    <img class="object-cover w-16 h-16 md:w-24 md:h-24 rounded-full mx-auto" :src="userDetails.profilePicture? getImageSrc(userDetails.profilePicture): '/src/assets/blank_avatar.jpg'">
     <form @submit.prevent="">
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
@@ -48,6 +50,7 @@
 import { BASE_URL } from "../config";
 import {ref, onMounted} from 'vue';
 import { useAuthStore } from '../stores/auth';
+import {getImageSrc} from '../composables/ConvertByteArrayToImage'; 
 
 
 const auth = useAuthStore();
