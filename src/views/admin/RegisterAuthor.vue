@@ -158,9 +158,9 @@ const registerAuthor = async () => {
         try {
             const response = await fetch(`${BASE_URL}/api/admin/register-author`, {
                 method: 'POST',
-                // headers: {
-                //     Authorization: `Bearer ${auth.token}`
-                // },
+                headers: {
+                    Authorization: `Bearer ${auth.token}`
+                },
                 body: formData,
             });
 

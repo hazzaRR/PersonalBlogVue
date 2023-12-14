@@ -10,6 +10,7 @@ import Settings from '../views/Settings.vue';
 import Login from '../views/Login.vue';
 import NotFoundPage from '../views/NotFoundPage.vue';
 import { useAuthStore } from '../stores/auth';
+import { jwtDecode } from "jwt-decode";
 
 const routes = [
   {
@@ -106,19 +107,26 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach(async (to) => {
-//   const auth = useAuthStore();
+router.beforeEach(async (to) => {
+  const auth = useAuthStore();
 
-//     if (to.meta.requiresAuth) {
-//       if (!auth.username) {
-//         return '/auth/login'
-//       }
+    if (to.meta.requiresAuth) {
+      if (!auth.username || !auth.token) {
+        auth.logout();
+        // return '/auth/login'
+      }
 
-//       if (to.meta.requiredRole && to.meta.requiredRole !== auth.roles) {
-//         return '/auth/login'
-//       }
-//   }
+      const decoded = jwtDecode(auth.token)
 
-// })
+      if (new Date(decoded.exp*1000) < new Date() || decoded.sub != auth.username) {
+        auth.logout();
+      }
+      if (to.meta.requiredRole && !auth.roles.includes(to.meta.requiredRole)) {
+        auth.logout();
+        // return '/auth/login'
+      }
+  }
+
+})
 
 export default router

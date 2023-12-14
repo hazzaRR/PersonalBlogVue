@@ -9,7 +9,7 @@ export const useAuthStore = defineStore({
         return { 
             username: localStorage.getItem('username') || null,
             token: localStorage.getItem('token') || null,
-            roles: localStorage.getItem('roles') || [],
+            roles: localStorage.getItem('roles') || null,
             profilePicture: localStorage.getItem('profilePicture') || null,
             returnUrl: '/'
         }
