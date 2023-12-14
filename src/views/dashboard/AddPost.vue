@@ -56,7 +56,7 @@
                   </label>
                 </div>
 
-                <AddCategory @added-category="getCategories()" />
+                <AddCategory @added-category="updateCategories" />
 
               </div>
 
@@ -230,10 +230,14 @@ const submitForm = async () => {
     formData.append('bannerImage', banner_image.value)
   }
 
+  console.log(auth.token);
 
   try {
     const response = await fetch(`${BASE_URL}/api/posts/`, {
       method: 'POST',
+      headers: {
+            "Authorization": `Bearer ${auth.token}`
+      },
       body: formData,
     });
     // const data = await response.json();
@@ -256,11 +260,21 @@ const submitForm = async () => {
 
     }
 
+    else if (response.status === 401) {
+      console.log(await response.json());
+      console.log(await response.text());
+      console.log(await response.statusText());
+    }
+
   
 
   } catch (error) {
     console.error('Error:', error);
   }
 
+  
 };
+const updateCategories = async () => {
+categories.value = await getCategories();
+} 
 </script>

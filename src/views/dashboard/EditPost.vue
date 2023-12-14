@@ -60,7 +60,7 @@
                   </label>
                 </div>
 
-                <AddCategory @added-category="getCategories" />
+                <AddCategory @added-category="updateCategories" />
 
               </div>
 
@@ -121,5 +121,9 @@ const submitForm = async () => {
   router.push(`/dashboard/manage-posts`);
   
 }
+
+const updateCategories = async () => {
+  categories.value = await getCategories();
+} 
 
 </script>
