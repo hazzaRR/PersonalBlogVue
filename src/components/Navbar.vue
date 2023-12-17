@@ -22,6 +22,7 @@
         </label>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li v-for="(tool, index) in tools" :key="index"><router-link :to="tool.link">{{tool.name}}</router-link></li>
+          <li v-if='auth.roles.includes("ROLE_ADMIN")'><router-link to="/admin/register-author">Add Author</router-link></li>
           <li @click="logout"><p>Logout</p></li>
         </ul>
       </div>

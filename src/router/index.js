@@ -7,6 +7,7 @@ import AddPost from '../views/dashboard/AddPost.vue';
 import EditPost from '../views/dashboard/EditPost.vue';
 import RegisterAuthor from '../views/admin/RegisterAuthor.vue';
 import Settings from '../views/Settings.vue';
+import ChangePassword from '../views/ChangePassword.vue';
 import Login from '../views/Login.vue';
 import NotFoundPage from '../views/NotFoundPage.vue';
 import { useAuthStore } from '../stores/auth';
@@ -70,6 +71,14 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: Settings,
+    meta: { 
+      requiresAuth: true,
+    }
+  },
+  {
+    path: '/settings/change-password',
+    name: 'changePassword',
+    component: ChangePassword,
     meta: { 
       requiresAuth: true,
     }

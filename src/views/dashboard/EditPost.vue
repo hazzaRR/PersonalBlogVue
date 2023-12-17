@@ -75,7 +75,7 @@
               <div class="mt-6">
                 <button type="submit"
                   class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  Post
+                  Make Changes
                 </button>
               </div>
             </form>
@@ -117,7 +117,13 @@ onMounted(async () => {
 
 
 const submitForm = async () => {
-  const response = await updatePost(props.id, postDetails.value, banner_image.value);
+  const response = await updatePost(props.id, {
+    title: postDetails.value.title,
+    content: postDetails.value.content,
+    categories: postDetails.value.categories,
+    isPrivatePost:  postDetails.value.privatePost,
+    altText: postDetails.value.altText,
+  }, banner_image.value);
   router.push(`/dashboard/manage-posts`);
   
 }
@@ -125,5 +131,7 @@ const submitForm = async () => {
 const updateCategories = async () => {
   categories.value = await getCategories();
 } 
+
+
 
 </script>

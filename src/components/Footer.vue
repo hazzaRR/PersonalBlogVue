@@ -12,7 +12,7 @@
 
         <div class="flex -mx-2">
 
-            <a href="https://www.linkedin.com/in/harry-redman-b3a153225/" class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Linkedin">
+            <a href="https://www.linkedin.com/in/harryredman/" class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Linkedin">
                 <i class="devicon-linkedin-plain text-xl"></i>
             </a>
             

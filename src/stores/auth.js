@@ -42,6 +42,9 @@ export const useAuthStore = defineStore({
 
                 router.push(this.returnUrl || '/');
             }
+            else if (response.status === 401 || response.status === 403) {
+                alert("Incorrect username or password");
+            }
         },
 
         async logout(username, password) {

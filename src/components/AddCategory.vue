@@ -21,6 +21,9 @@
 <script setup>
 import { BASE_URL } from "../config";
 import { ref } from "vue";
+import { useAuthStore } from '../stores/auth';
+
+const auth = useAuthStore();
 
 const emit = defineEmits(['added-category'])
 const newCategory = ref("");
@@ -35,7 +38,8 @@ const addCategory = async () => {
             const response = await fetch(`${BASE_URL}/api/category/`, {
                 method: 'POST',
                 headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${auth.token}`
                 },
                 body: JSON.stringify({categoryName: newCategory.value})
             });
@@ -60,6 +64,7 @@ const addCategory = async () => {
 }
 
 </script>
+
 
 <style lang="scss" scoped>
 
