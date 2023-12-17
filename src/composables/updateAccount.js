@@ -1,26 +1,25 @@
 import { BASE_URL } from "../config";
 import { useAuthStore } from '../stores/auth';
 
-export const updatePost = async (userDetails, profilePicture) => {
-
+export const updateAccount = async (userDetails, profilePicture) => {
     const formData = new FormData();
 
     // Append the JSON object as a blob
-    const jsonBlob = new Blob([JSON.stringify(postDetails)], { type: 'application/json' });
-    formData.append('postDetails', jsonBlob);
+    const jsonBlob = new Blob([JSON.stringify(userDetails)], { type: 'application/json' });
+    formData.append('userDetails', jsonBlob);
 
 
 
 
-    if (banner_image !== null) {
-      formData.append('bannerImage', banner_image)
+    if (profilePicture !== null) {
+      formData.append('profilePicture', profilePicture)
     }
 
   const auth = useAuthStore();
 
 
   try {
-    const response = await fetch(`${BASE_URL}/api/posts/postId/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/user/${auth.username}`, {
       method: 'PUT',
       body: formData,
       headers: {
@@ -30,10 +29,21 @@ export const updatePost = async (userDetails, profilePicture) => {
 
     if (response.status === 200) {
 
-      alert("Post successfully updated");
+      alert("UserDetails successfully updated");
+
+      const data = await response.json();
+
+      if (data.profilePicture != null) {
+          localStorage.setItem('profilePicture', data.profilePicture);
+          auth.profilePicture = data.profilePicture;
+      }
+    
+      return data;
     }
 
-    console.log(response.status);
+    else if (response.status === 401) {
+      return 401;
+    }
 
   } catch (error) {
     console.error('Error:', error);
