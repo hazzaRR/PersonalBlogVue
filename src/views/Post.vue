@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                <h1 class="block mt-4 text-2xl font-semibold text-gray-800 dark:text-white capitalize">
+                <h1 class="block my-2 text-2xl font-semibold text-gray-800 dark:text-white capitalize">
                     {{postDetails.title}}
                 </h1>
 

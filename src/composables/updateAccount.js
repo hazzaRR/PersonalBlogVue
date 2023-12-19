@@ -42,6 +42,7 @@ export const updateAccount = async (userDetails, profilePicture) => {
     }
 
     else if (response.status === 401) {
+      alert("Account Details could not be updated, incorrect password was entered")
       return 401;
     }
 
