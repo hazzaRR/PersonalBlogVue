@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/head": "^2.0.0",
     "jwt-decode": "^4.0.0",
     "markdown-it": "^14.0.0",
     "pinia": "^2.1.7",

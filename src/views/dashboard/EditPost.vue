@@ -121,7 +121,7 @@ const submitForm = async () => {
     title: postDetails.value.title,
     content: postDetails.value.content,
     categories: postDetails.value.categories,
-    isPrivatePost:  postDetails.value.privatePost,
+    privatePost:  postDetails.value.privatePost,
     altText: postDetails.value.altText,
   }, banner_image.value);
   router.push(`/dashboard/manage-posts`);

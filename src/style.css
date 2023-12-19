@@ -1,18 +1,24 @@
 @tailwind base;
 
 @layer base {
-    h1 {
+    .markdown h1 {
       @apply text-2xl font-semibold my-2 text-gray-800 dark:text-white;
     }
-    h2 {
+    .markdown h2 {
       @apply text-xl font-semibold my-2 text-gray-800 dark:text-white;
     }
-    h3 {
+    .markdown h3 {
       @apply text-lg font-semibold my-2 text-gray-800 dark:text-white;
     }
-    p {
+    .markdown p {
         @apply text-sm text-gray-500 dark:text-gray-300 md:text-sm;
     }
+    .markdown a {
+      @apply text-sm text-sky-500 hover:underline;
+    } 
+    .markdown img {
+      @apply mx-auto rounded-lg my-4;
+    } 
 }
 
 

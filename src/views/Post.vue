@@ -22,7 +22,7 @@
                     {{postDetails.title}}
                 </h1>
 
-                <div v-html="markdown.render(postDetails.content)" />
+                <div class="markdown" v-html="markdown.render(postDetails.content)" />
 
 
                 <div class="flex items-center mt-6">

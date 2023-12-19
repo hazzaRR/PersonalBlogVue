@@ -47,37 +47,49 @@ const updatePassword = async () => {
     }
 
 
-    if (newPassword.value != confirmNewPassword.value) {
+    else if (newPassword.value != confirmNewPassword.value) {
         alert("New Passwords must be the same");
     }
 
-    try {
+    else {
 
-    const response = await fetch(`${BASE_URL}/api/user/update-password`, {
-                method: 'PUT```````',
+   
+        
+        try {
+            
+            const response = await fetch(`${BASE_URL}/api/user/update-password`, {
+                method: 'PUT',
                 headers: {
-                    Authorization: `Bearer ${auth.token}`
+                    'Authorization': `Bearer ${auth.token}`,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({username: auth.username , password: currentPassword.value, newPassword: newPassword.value}),
             });
-
+            
             
             if (response.status === 200) {
                 
                 alert("Password updated");
-        
+
+                currentPassword.value = "";
+                newPassword.value = "";
+                confirmNewPassword.value = "";
+                
             }
             else {
-                alert("incorrect password inputted");
+                alert("Password cannot be updated, incorrect password entered");
+
+                currentPassword.value = "";
             }
-        
+            
         } catch (error) {
             console.error('Error:', error);
         }
-
-
-};
-
+        
+    }
+        
+    };
+    
 
 
 </script>
