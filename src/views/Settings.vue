@@ -83,7 +83,6 @@ const profile_pic = ref(null);
 const password = ref("");
 
 const handleFileChange = (event) => {
-  console.log(event);
   const file = event.target.files;
   profile_pic.value = file[0];
 };
@@ -110,11 +109,13 @@ const updateUserDetails = async () => {
       surname: userDetails.value.surname,
       email: userDetails.value.email,
       password: password.value}, profile_pic.value);
-      console.log(response);
 
       if (response !== 401) {
         userDetails.value = response;
+        profile_pic.value = null;
       }
+
+    password.value = "";
     }
 }
 

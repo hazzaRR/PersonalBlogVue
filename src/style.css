@@ -1,5 +1,4 @@
 @tailwind base;
-
 @layer base {
     .markdown h1 {
       @apply text-2xl font-semibold my-2 text-gray-800 dark:text-white;
@@ -20,7 +19,6 @@
       @apply mx-auto rounded-lg my-4;
     } 
 }
-
 
 @tailwind components;
 @tailwind utilities;
