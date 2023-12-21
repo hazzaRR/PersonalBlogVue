@@ -41,7 +41,6 @@ const options = {year: 'numeric', month: 'long', day: 'numeric' };
 
 onMounted(async () => {
   posts.value = await getPublicPosts();
-  console.log(posts);
 });
 
 </script>

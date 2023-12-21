@@ -201,7 +201,6 @@ onMounted(async () => {
 
 
 const handleFileChange = (event) => {
-  console.log(event);
   const file = event.target.files;
   banner_image.value = file[0];
 };
@@ -222,15 +221,10 @@ const submitForm = async () => {
   formData.append('postDetails', jsonBlob);
 
 
-  console.log(postDetails.value);
-  console.log(banner_image.value);
-
-
   if (banner_image.value !== null) {
     formData.append('bannerImage', banner_image.value)
   }
 
-  console.log(auth.token);
 
   try {
     const response = await fetch(`${BASE_URL}/api/posts/`, {
@@ -261,9 +255,7 @@ const submitForm = async () => {
     }
 
     else if (response.status === 401) {
-      console.log(await response.json());
-      console.log(await response.text());
-      console.log(await response.statusText());
+      alert("unauthorised access to create a post")
     }
 
   

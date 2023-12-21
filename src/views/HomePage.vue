@@ -48,7 +48,7 @@
                   <div class="flex items-center justify-between mt-4">
 
                     <div class="flex items-center mt-6">
-                    <img class="object-cover object-center w-10 h-10 rounded-full mr-2" :src="latestPost.authorImage ? getImageSrc(latestPost.authorImage): '/src/assets/blank_avatar.jpg'" alt="">
+                    <img class="object-cover object-center w-10 h-10 rounded-full mr-2" :src="latestPost.authorImage ? getImageSrc(latestPost.authorImage): blank_avatar" alt="">
 
                     <div class="">
                           <h1 class="text-lg font-medium text-gray-700 dark:text-gray-30 my-0">{{`${latestPost.firstname} ${latestPost.surname}`}}</h1>
@@ -69,7 +69,8 @@
 <script setup>
 import {ref, onMounted} from 'vue';
 import {getLatestPosts} from '../composables/getLatestPosts'; 
-import {getImageSrc} from '../composables/ConvertByteArrayToImage'; 
+import {getImageSrc} from '../composables/ConvertByteArrayToImage';
+import blank_avatar from '../assets/blank_avatar.jpg'
 
 const latestPosts = ref([]);
 const defaultImage = ref("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
@@ -79,7 +80,6 @@ const options = {year: 'numeric', month: 'long', day: 'numeric' };
 
 onMounted(async () => {
     latestPosts.value = await getLatestPosts();
-  console.log(latestPosts);
 });
 
 </script>

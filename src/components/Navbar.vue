@@ -17,7 +17,7 @@
       <div v-if="isLoggedIn">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
-            <img alt="Tailwind CSS Navbar component" :src="auth.profilePicture? getImageSrc(auth.profilePicture): '/src/assets/blank_avatar.jpg'" />
+            <img alt="Tailwind CSS Navbar component" :src="auth.profilePicture? getImageSrc(auth.profilePicture): blank_avatar" />
           </div>
         </label>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -39,6 +39,7 @@ const props = defineProps(['links', "tools"]);
 import {useAuthStore} from '../stores/auth';
 import {getImageSrc} from '../composables/ConvertByteArrayToImage'; 
 import {computed} from 'vue';
+import blank_avatar from '../assets/blank_avatar.jpg'
 
 const auth = useAuthStore();
 

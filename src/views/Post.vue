@@ -26,7 +26,7 @@
 
 
                 <div class="flex items-center mt-6">
-                    <img class="object-cover object-center w-10 h-10 rounded-full mr-2" :src="postDetails.authorImage ? getImageSrc(postDetails.authorImage): '/src/assets/blank_avatar.jpg'" alt="">
+                    <img class="object-cover object-center w-10 h-10 rounded-full mr-2" :src="postDetails.authorImage ? getImageSrc(postDetails.authorImage): blank_avatar" alt="">
 
                     <div class="">
                         <h1 class="text-sm text-gray-700 dark:text-gray-200 my-0">{{`${postDetails.firstname} ${postDetails.surname}`}}</h1>
@@ -45,6 +45,7 @@ import {getPost} from '../composables/getPost';
 import {getImageSrc} from '../composables/ConvertByteArrayToImage'; 
 import SkeletonParagraph from '../components/SkeletonParagraph.vue';
 import NotFound from '../components/NotFound.vue'
+import blank_avatar from '../assets/blank_avatar.jpg'
 const props = defineProps(['id']);
 
 

@@ -3,9 +3,6 @@ import { useAuthStore } from '../stores/auth';
 
 export const updatePost = async (id, postDetails, banner_image) => {
 
-    console.log(id);
-    console.log(postDetails);
-    console.log(banner_image);
 
     const formData = new FormData();
 

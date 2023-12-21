@@ -4,7 +4,7 @@
   <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
     <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
     
-    <img class="object-cover w-16 h-16 md:w-24 md:h-24 rounded-full mx-auto" :src="userDetails.profilePicture ? getImageSrc(userDetails.profilePicture): '/src/assets/blank_avatar.jpg'">
+    <img class="object-cover w-16 h-16 md:w-24 md:h-24 rounded-full mx-auto" :src="userDetails.profilePicture ? getImageSrc(userDetails.profilePicture): blank_avatar">
     <form @submit.prevent="updateUserDetails">
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
@@ -58,6 +58,7 @@ import {ref, onMounted} from 'vue';
 import { useAuthStore } from '../stores/auth';
 import {getImageSrc} from '../composables/ConvertByteArrayToImage';
 import {updateAccount} from '../composables/updateAccount';
+import blank_avatar from '../assets/blank_avatar.jpg'
 
 
 const auth = useAuthStore();
@@ -103,7 +104,6 @@ const updateUserDetails = async () => {
   }
   else {
     
-    console.log(profile_pic.value)
     const response = await updateAccount({
       firstname: userDetails.value.firstname,
       surname: userDetails.value.surname,

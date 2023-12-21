@@ -128,14 +128,11 @@ const usernameError= ref(false);
 const emailError= ref(false);
 
 const handleFileChange = (event) => {
-  console.log(event);
   const file = event.target.files;
   profile_pic.value = file[0];
 };
 
 const registerAuthor = async () => {
-
-    console.log(auth.token)
 
     if (authorDetails.value.password !== retypePassword.value) {
         alert("Password doesn't match")
@@ -150,7 +147,6 @@ const registerAuthor = async () => {
         
         
         if (profile_pic.value !== null) {
-            console.log(profile_pic.value)
             formData.append('profilePicture', profile_pic.value)
         }
 

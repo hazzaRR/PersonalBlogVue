@@ -237,7 +237,6 @@ const displayedPosts = computed(() => {
 
 onMounted(async () => {
     authorPosts.value = await getPostByAuthor();
-    console.log(authorPosts.value)
 });
 
 const openDeleteModal = (id, title) => {
