@@ -9,6 +9,8 @@
 
                 <p class=" text-gray-500 mt-4 text-lg">Hi, my name is Harry Redman and I am a recent Computer Science graduate from UEA who has recently returned back from a three-month trip in South East Asia.
                      This is my personal blog where I will write posts about various Computer Science topics, my SEA travel experience, sports, and type 1 diabetes.
+                     <br>
+                     The backend API for this site is currently running on the Azure App Service free tier, therefore please give the site up to a minute if posts are not appearing and then refresh the site or change tabs :)
 
                 </p>
             </div>

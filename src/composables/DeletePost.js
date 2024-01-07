@@ -14,6 +14,7 @@ export const deletePost = async (id) => {
     });
 
 
+
     if (response.status === 200) {
 
         console.log("posted successfully deleted");
