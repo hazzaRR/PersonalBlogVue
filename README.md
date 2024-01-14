@@ -45,7 +45,7 @@ Welcome to the frontend repository of my Personal Blog App, a full-stack blog ap
 
 4. **Run the Vue.js Application:**
    ```
-   npm run serve
+   npm run dev
    ```
 The application will be accessible at http://localhost:5173.
 
