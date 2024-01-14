@@ -47,7 +47,7 @@ Welcome to the frontend repository of my Personal Blog App, a full-stack blog ap
    ```
    npm run serve
    ```
-The application will be accessible at http://localhost:8080.
+The application will be accessible at http://localhost:5173.
 
 ## Deployment
 The frontend is automatically deployed using Azure Static Web Apps whenever changes are pushed to the main branch.
