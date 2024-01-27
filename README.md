@@ -45,9 +45,9 @@ Welcome to the frontend repository of my Personal Blog App, a full-stack blog ap
 
 4. **Run the Vue.js Application:**
    ```
-   npm run serve
+   npm run dev
    ```
-The application will be accessible at http://localhost:8080.
+The application will be accessible at http://localhost:5173.
 
 ## Deployment
 The frontend is automatically deployed using Azure Static Web Apps whenever changes are pushed to the main branch.
