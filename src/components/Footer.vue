@@ -8,7 +8,7 @@
         </router-link>
 
         <!-- <p class="text-sm text-gray-600 dark:text-gray-300">© Copyright 2023. Created by Harry Redman.</p> -->
-        <p class="text-sm text-gray-600 dark:text-gray-300">© 2023. Created by Harry Redman.</p>
+        <p class="text-sm text-gray-600 dark:text-gray-300">© 2024. Created by Harry Redman.</p>
 
         <div class="flex -mx-2">
 
